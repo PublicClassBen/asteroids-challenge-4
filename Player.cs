@@ -36,10 +36,12 @@ public partial class Player : CharacterBody2D
 		if (thrusting)
 		{
 			Velocity += -Transform.Y * Acceleration * delta;
+			_sprite.Animation = "throttle";
 		}
 		else
 		{
 			Velocity *= Mathf.Exp(-CoastingDrag * delta);
+			_sprite.Animation = "no_throttle";
 
 			if (Velocity.Length() < 1.0f)
 			{
@@ -47,7 +49,8 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		Velocity.LimitLength(MaxSpeed);
+		Velocity = Velocity.LimitLength(MaxSpeed);
 		MoveAndSlide();
 	}
+
 }

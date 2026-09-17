@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cwfouc5eygorv"]
+
+[ext_resource type="Script" uid="uid://cdbmukkpck5l4" path="res://ScreenWarp.cs" id="1_gmnew"]
+
+[node name="ScreenWarp" type="VisibleOnScreenNotifier2D" unique_id=2055868126]
+script = ExtResource("1_gmnew")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqi41epq5yh58" path="res://Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3ao3xvnqlpbf" path="res://Player.png" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://cwfouc5eygorv" path="res://screen_warp.tscn" id="3_i3pqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
 atlas = ExtResource("2_i3pqv")
@@ -34,7 +35,7 @@ animations = [{
 script = ExtResource("1_onrkg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1749463448]
-position = Vector2(-11.842103, -6.2927084)
+position = Vector2(-11.842103, -7.2927084)
 scale = Vector2(0.6578947, 2.7370875)
 polygon = PackedVector2Array(16.480001, -9.020001, 19.520002, -9.020001, 66.64001, 14.020002, 21.040003, 8.5342865, 14.960001, 8.5342865, -30.640005, 14.020002)
 
@@ -42,3 +43,6 @@ polygon = PackedVector2Array(16.480001, -9.020001, 19.520002, -9.020001, 66.6400
 sprite_frames = SubResource("SpriteFrames_71blr")
 animation = &"no_throttle"
 offset = Vector2(0, 32)
+
+[node name="ScreenWarp" parent="." unique_id=2055868126 instance=ExtResource("3_i3pqv")]
+rect = Rect2(-32, -32, 64, 63)
