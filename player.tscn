@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cfy7gpy0j2nnu"]
+
+[ext_resource type="Script" uid="uid://cqi41epq5yh58" path="res://Player.cs" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c3ao3xvnqlpbf" path="res://Player.png" id="2_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd465"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71blr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cfe")
+}],
+"loop": 1,
+"name": &"no_throttle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd465")
+}],
+"loop": 1,
+"name": &"throttle",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D" unique_id=41200384]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1749463448]
+position = Vector2(-11.842103, -6.2927084)
+scale = Vector2(0.6578947, 2.7370875)
+polygon = PackedVector2Array(16.480001, -9.020001, 19.520002, -9.020001, 66.64001, 14.020002, 21.040003, 8.5342865, 14.960001, 8.5342865, -30.640005, 14.020002)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1470473636]
+sprite_frames = SubResource("SpriteFrames_71blr")
+animation = &"no_throttle"
+offset = Vector2(0, 32)

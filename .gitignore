@@ -1,0 +1,19 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot generated files
+.godot/
+*.translation
+
+# .NET build output
+bin/
+obj/
+
+# IDE files
+.vs/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
