@@ -12,13 +12,24 @@ public partial class Player : CharacterBody2D
 	public float RotationSpeed { get; set; } = 3.0f;
 
 	[Export]
-	public float Acceleration { get; set; } = 250.0f;
+	public float Acceleration { get; set; } = 400.0f;
 
 	[Export]
 	public float CoastingDrag { get; set; } = 0.35f;
+
+	[Export]
+	public PackedScene BulletScene { get; set; }
+
+	private Marker2D _muzzle;
+
+	private AudioStreamPlayer _shootSound;
+	private AudioStreamPlayer _throttleSound;
 	public override void _Ready()
 	{
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_muzzle = GetNode<Marker2D>("Muzzle");
+		_shootSound = GetNode<AudioStreamPlayer>("shootSound");
+		_throttleSound = GetNode<AudioStreamPlayer>("throttleSound");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,12 +47,17 @@ public partial class Player : CharacterBody2D
 		if (thrusting)
 		{
 			Velocity += -Transform.Y * Acceleration * delta;
+			if (!_throttleSound.Playing)
+			{
+				_throttleSound.Play();
+			}
 			_sprite.Animation = "throttle";
 		}
 		else
 		{
 			Velocity *= Mathf.Exp(-CoastingDrag * delta);
 			_sprite.Animation = "no_throttle";
+			_throttleSound.Stop();
 
 			if (Velocity.Length() < 1.0f)
 			{
@@ -49,8 +65,22 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
+		if (Input.IsActionJustPressed("fire"))
+		{
+			Shoot();
+		}
+
 		Velocity = Velocity.LimitLength(MaxSpeed);
 		MoveAndSlide();
+	}
+
+	private void Shoot()
+	{
+		Bullet bullet = BulletScene.Instantiate<Bullet>();
+		bullet.SetDirection(-GlobalTransform.Y);
+		GetParent().AddChild(bullet);
+		bullet.GlobalPosition = _muzzle.GlobalPosition;
+		_shootSound.Play();
 	}
 
 }

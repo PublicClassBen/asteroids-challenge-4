@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dmk7cgikhhubv"]
+
+[ext_resource type="Script" uid="uid://ct66k3wanpovg" path="res://Asteroid.cs" id="1_p0ukn"]
+[ext_resource type="Texture2D" uid="uid://bhj83u1a2joqn" path="res://asteroids.png" id="1_u87q6"]
+[ext_resource type="PackedScene" uid="uid://cwfouc5eygorv" path="res://screen_warp.tscn" id="3_gm5ib"]
+[ext_resource type="AudioStream" uid="uid://c0p00rr0krkky" path="res://asteroid_destroy.wav" id="4_8gfwb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdvs2"]
+radius = 52.009613
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3absh"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddsov"]
+radius = 13.038404
+
+[node name="asteroid" type="Area2D" unique_id=1358297943]
+script = ExtResource("1_p0ukn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1280765715]
+scale = Vector2(2, 2)
+texture = ExtResource("1_u87q6")
+hframes = 2
+vframes = 2
+
+[node name="collision_large" type="CollisionShape2D" parent="." unique_id=1090136633]
+position = Vector2(6, -6)
+shape = SubResource("CircleShape2D_qdvs2")
+
+[node name="collision_medium" type="CollisionShape2D" parent="." unique_id=65413741]
+visible = false
+position = Vector2(2, -31)
+shape = SubResource("CircleShape2D_3absh")
+
+[node name="collision_small" type="CollisionShape2D" parent="." unique_id=247752551]
+visible = false
+position = Vector2(-23, -37)
+shape = SubResource("CircleShape2D_ddsov")
+
+[node name="ScreenWarp_large" parent="." unique_id=2055868126 instance=ExtResource("3_gm5ib")]
+position = Vector2(-8, -16)
+rect = Rect2(-30, -39, 86, 96)
+
+[node name="ScreenWarp_medium" parent="." unique_id=1468631874 instance=ExtResource("3_gm5ib")]
+visible = false
+position = Vector2(-2, -18)
+rect = Rect2(-21, -38, 47, 49)
+
+[node name="ScreenWarp_small" parent="." unique_id=679275226 instance=ExtResource("3_gm5ib")]
+visible = false
+position = Vector2(-22, -36)
+rect = Rect2(-10, -13, 20, 23)
+
+[node name="asteroidHitSound" type="AudioStreamPlayer2D" parent="." unique_id=1176727763]
+stream = ExtResource("4_8gfwb")
+max_polyphony = 5

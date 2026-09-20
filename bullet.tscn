@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bk3ap523dt7w4"]
+
+[ext_resource type="Script" uid="uid://ck5tlaxoiv72r" path="res://Bullet.cs" id="1_v7oki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbhdk"]
+radius = 2.0
+
+[node name="bullet" type="Area2D" unique_id=1008080739]
+script = ExtResource("1_v7oki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739752152]
+shape = SubResource("CircleShape2D_hbhdk")
+
+[node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=2020691495]
+rect = Rect2(-2, -2, 4, 4)

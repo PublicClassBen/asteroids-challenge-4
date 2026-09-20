@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cqi41epq5yh58" path="res://Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3ao3xvnqlpbf" path="res://Player.png" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://cwfouc5eygorv" path="res://screen_warp.tscn" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://bk3ap523dt7w4" path="res://bullet.tscn" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://dci2vdgrhnjjv" path="res://player_fire.wav" id="5_sweqy"]
+[ext_resource type="AudioStream" uid="uid://covormemb5ai5" path="res://player_throttle.wav" id="6_2hs0m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
 atlas = ExtResource("2_i3pqv")
@@ -33,6 +36,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D" unique_id=41200384]
 script = ExtResource("1_onrkg")
+BulletScene = ExtResource("4_hqtel")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1749463448]
 position = Vector2(-11.842103, -7.2927084)
@@ -46,3 +50,14 @@ offset = Vector2(0, 32)
 
 [node name="ScreenWarp" parent="." unique_id=2055868126 instance=ExtResource("3_i3pqv")]
 rect = Rect2(-32, -32, 64, 63)
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1117061564]
+position = Vector2(0, -34)
+
+[node name="shootSound" type="AudioStreamPlayer" parent="." unique_id=935167273]
+stream = ExtResource("5_sweqy")
+max_polyphony = 5
+
+[node name="throttleSound" type="AudioStreamPlayer" parent="." unique_id=746114614]
+stream = ExtResource("6_2hs0m")
+volume_db = -8.0
