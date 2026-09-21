@@ -6,31 +6,38 @@ public partial class AsteroidManager : Node2D
 	private Marker2D[] _asteroid_spawns;
 	private int current_wave = 0;
 
+	private int _asteroidsRemaining = 0;
+
 	[Export]
 	public PackedScene AsteroidScene { get; set; }
 
-    public override void _Ready()
-    {
-        _asteroid_spawns = new Marker2D[28];
+	[Signal]
+	public delegate void WaveClearedEventHandler();
 
-		for(int i = 0; i < _asteroid_spawns.Length; i++)
+	public override void _Ready()
+	{
+		_asteroid_spawns = new Marker2D[28];
+
+		for (int i = 0; i < _asteroid_spawns.Length; i++)
 		{
 			_asteroid_spawns[i] = GetNode<Marker2D>($"asteroidSpawn{i + 1}");
 
-			if(_asteroid_spawns[i] == null)
+			if (_asteroid_spawns[i] == null)
 			{
 				GD.PrintErr($"index {i} could not be found");
 			}
 		}
+		ChildEnteredTree += OnChildEnteredTree;
+		ChildExitingTree += OnChildExitingTree;
 		spawnAsteroids();
-    }
+	}
 
 
 	private void spawnAsteroids()
 	{
 		int numberOfAsteroids = current_wave + 4;
-		
-		for(int i = 0; i < numberOfAsteroids; i++)
+
+		for (int i = 0; i < numberOfAsteroids; i++)
 		{
 			int index = GD.RandRange(0, 27);
 			Asteroid asteroid = AsteroidScene.Instantiate<Asteroid>();
@@ -38,6 +45,36 @@ public partial class AsteroidManager : Node2D
 			asteroid.GlobalPosition = _asteroid_spawns[index].GlobalPosition;
 			asteroid.SetAsteroidProperties(AsteroidType.Large);
 		}
+	}
+
+	private void OnChildEnteredTree(Node child)
+	{
+		if (child is Asteroid)
+		{
+			_asteroidsRemaining++;
+		}
+	}
+
+	private void OnChildExitingTree(Node child)
+	{
+		if (child is not Asteroid)
+		{
+			return;
+		}
+
+		_asteroidsRemaining--;
+
+		if (_asteroidsRemaining == 0)
+		{
+			GD.Print($"Wave {current_wave} completed!");
+			EmitSignal(SignalName.WaveCleared);
+		}
+	}
+
+	public void NextWave()
+	{
+		current_wave++;
+		spawnAsteroids();
 	}
 
 }
