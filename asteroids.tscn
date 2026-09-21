@@ -1,23 +1,13 @@
 [gd_scene format=3 uid="uid://c70wblx3nr4st"]
 
-[ext_resource type="PackedScene" uid="uid://dmk7cgikhhubv" path="res://asteroid.tscn" id="1_7ysfi"]
 [ext_resource type="PackedScene" uid="uid://cfy7gpy0j2nnu" path="res://player.tscn" id="2_1bbsi"]
+[ext_resource type="PackedScene" uid="uid://bqiykycsryj7e" path="res://asteroid_manager.tscn" id="2_7ysfi"]
 
 [node name="asteroids" type="Node" unique_id=1984687547]
 
 [node name="Game" type="Node" parent="." unique_id=524381013]
 
-[node name="asteroid" parent="Game" unique_id=1358297943 instance=ExtResource("1_7ysfi")]
-position = Vector2(1363, 72)
-
-[node name="asteroid2" parent="Game" unique_id=77725922 instance=ExtResource("1_7ysfi")]
-position = Vector2(1374, 594)
-
-[node name="asteroid3" parent="Game" unique_id=1127344871 instance=ExtResource("1_7ysfi")]
-position = Vector2(-103, 597)
-
-[node name="asteroid4" parent="Game" unique_id=1832336137 instance=ExtResource("1_7ysfi")]
-position = Vector2(-111, 158)
-
 [node name="player" parent="Game" unique_id=41200384 instance=ExtResource("2_1bbsi")]
 position = Vector2(622, 387)
+
+[node name="asteroid_manager" parent="Game" unique_id=1831589468 instance=ExtResource("2_7ysfi")]

@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bqiykycsryj7e"]
+
+[ext_resource type="Script" uid="uid://dj5cxwo1pbr2w" path="res://AsteroidManager.cs" id="1_c67yd"]
+[ext_resource type="PackedScene" uid="uid://dmk7cgikhhubv" path="res://asteroid.tscn" id="2_s7dap"]
+
+[node name="asteroid_manager" type="Node2D" unique_id=1831589468]
+script = ExtResource("1_c67yd")
+AsteroidScene = ExtResource("2_s7dap")
+
+[node name="asteroidSpawn1" type="Marker2D" parent="." unique_id=618692149]
+position = Vector2(66, -74)
+
+[node name="asteroidSpawn2" type="Marker2D" parent="." unique_id=1073815863]
+position = Vector2(264, -76)
+
+[node name="asteroidSpawn3" type="Marker2D" parent="." unique_id=1657638018]
+position = Vector2(447, -74)
+
+[node name="asteroidSpawn4" type="Marker2D" parent="." unique_id=396029387]
+position = Vector2(631, -77)
+
+[node name="asteroidSpawn5" type="Marker2D" parent="." unique_id=1367060502]
+position = Vector2(765, -74)
+
+[node name="asteroidSpawn6" type="Marker2D" parent="." unique_id=394424566]
+position = Vector2(905, -74)
+
+[node name="asteroidSpawn7" type="Marker2D" parent="." unique_id=204865119]
+position = Vector2(1025, -74)
+
+[node name="asteroidSpawn8" type="Marker2D" parent="." unique_id=39672044]
+position = Vector2(1158, -80)
+
+[node name="asteroidSpawn9" type="Marker2D" parent="." unique_id=1340435990]
+position = Vector2(1375, 79)
+
+[node name="asteroidSpawn10" type="Marker2D" parent="." unique_id=525601579]
+position = Vector2(87, 824)
+
+[node name="asteroidSpawn11" type="Marker2D" parent="." unique_id=453525142]
+position = Vector2(285, 822)
+
+[node name="asteroidSpawn12" type="Marker2D" parent="." unique_id=862996260]
+position = Vector2(468, 824)
+
+[node name="asteroidSpawn13" type="Marker2D" parent="." unique_id=1375998270]
+position = Vector2(652, 821)
+
+[node name="asteroidSpawn14" type="Marker2D" parent="." unique_id=1971120159]
+position = Vector2(786, 824)
+
+[node name="asteroidSpawn15" type="Marker2D" parent="." unique_id=2042424890]
+position = Vector2(926, 824)
+
+[node name="asteroidSpawn16" type="Marker2D" parent="." unique_id=513697272]
+position = Vector2(1046, 824)
+
+[node name="asteroidSpawn17" type="Marker2D" parent="." unique_id=1895863089]
+position = Vector2(1179, 818)
+
+[node name="asteroidSpawn18" type="Marker2D" parent="." unique_id=1270226576]
+position = Vector2(1379, 192)
+
+[node name="asteroidSpawn19" type="Marker2D" parent="." unique_id=704143040]
+position = Vector2(1379, 315)
+
+[node name="asteroidSpawn20" type="Marker2D" parent="." unique_id=743342559]
+position = Vector2(1381, 444)
+
+[node name="asteroidSpawn21" type="Marker2D" parent="." unique_id=2100712751]
+position = Vector2(1379, 571)
+
+[node name="asteroidSpawn22" type="Marker2D" parent="." unique_id=817127790]
+position = Vector2(1383, 684)
+
+[node name="asteroidSpawn23" type="Marker2D" parent="." unique_id=1686761049]
+position = Vector2(-108, 71)
+
+[node name="asteroidSpawn24" type="Marker2D" parent="." unique_id=1968212541]
+position = Vector2(-104, 184)
+
+[node name="asteroidSpawn25" type="Marker2D" parent="." unique_id=2055811296]
+position = Vector2(-104, 307)
+
+[node name="asteroidSpawn26" type="Marker2D" parent="." unique_id=174763482]
+position = Vector2(-102, 436)
+
+[node name="asteroidSpawn27" type="Marker2D" parent="." unique_id=296725517]
+position = Vector2(-104, 563)
+
+[node name="asteroidSpawn28" type="Marker2D" parent="." unique_id=1705800948]
+position = Vector2(-100, 676)
