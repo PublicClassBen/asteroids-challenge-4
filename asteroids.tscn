@@ -3,11 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cfy7gpy0j2nnu" path="res://player.tscn" id="2_1bbsi"]
 [ext_resource type="PackedScene" uid="uid://bqiykycsryj7e" path="res://asteroid_manager.tscn" id="2_7ysfi"]
 
-[node name="asteroids" type="Node" unique_id=1984687547]
+[node name="Game" type="Node2D" unique_id=1326230250]
 
-[node name="Game" type="Node" parent="." unique_id=524381013]
+[node name="background" type="ColorRect" parent="." unique_id=1274471403]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.11858138, 0.11858138, 0.11858138, 1)
 
-[node name="player" parent="Game" unique_id=41200384 instance=ExtResource("2_1bbsi")]
-position = Vector2(622, 387)
+[node name="asteroid_manager" parent="." unique_id=1831589468 instance=ExtResource("2_7ysfi")]
 
-[node name="asteroid_manager" parent="Game" unique_id=1831589468 instance=ExtResource("2_7ysfi")]
+[node name="player" parent="." unique_id=41200384 instance=ExtResource("2_1bbsi")]
+position = Vector2(652, 376)
