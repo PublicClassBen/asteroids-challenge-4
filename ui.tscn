@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bj8dtkeuh7nhd"]
+
+[ext_resource type="FontFile" uid="uid://rihckhujm7ck" path="res://Aldrich-Regular.ttf" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://c75x5rg0luisp" path="res://Ui.cs" id="1_m6e0p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hbhdk"]
+font = ExtResource("1_fyqef")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_qdvs2"]
+font = ExtResource("1_fyqef")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_3absh"]
+font = ExtResource("1_fyqef")
+font_size = 32
+
+[node name="ui" type="CanvasLayer" unique_id=578707175]
+script = ExtResource("1_m6e0p")
+
+[node name="score" type="Label" parent="." unique_id=1342987704]
+offset_left = 981.0
+offset_top = 30.0
+offset_right = 1238.0
+offset_bottom = 61.0
+text = "Score: 000000"
+label_settings = SubResource("LabelSettings_hbhdk")
+
+[node name="lives" type="Label" parent="." unique_id=1908498000]
+offset_left = 21.0
+offset_top = 30.0
+offset_right = 144.0
+offset_bottom = 61.0
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_qdvs2")
+
+[node name="info" type="Label" parent="." unique_id=1185936303]
+visible = false
+offset_left = 476.0
+offset_top = 340.0
+offset_right = 846.0
+offset_bottom = 363.0
+label_settings = SubResource("LabelSettings_3absh")

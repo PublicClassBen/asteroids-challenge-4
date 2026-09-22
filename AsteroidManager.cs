@@ -14,6 +14,9 @@ public partial class AsteroidManager : Node2D
 	[Signal]
 	public delegate void WaveClearedEventHandler();
 
+	[Signal]
+	public delegate void AsteroidDestroyedEventHandler(int asteroidType);
+
 	public override void _Ready()
 	{
 		_asteroid_spawns = new Marker2D[28];
@@ -49,9 +52,11 @@ public partial class AsteroidManager : Node2D
 
 	private void OnChildEnteredTree(Node child)
 	{
-		if (child is Asteroid)
+		if (child is Asteroid asteroid)
 		{
 			_asteroidsRemaining++;
+			asteroid.AsteroidDestroyed += OnAsteroidDestroyed;
+			
 		}
 	}
 
@@ -75,6 +80,11 @@ public partial class AsteroidManager : Node2D
 	{
 		current_wave++;
 		spawnAsteroids();
+	}
+
+	private void OnAsteroidDestroyed(int asteroidType)
+	{
+		EmitSignal(SignalName.AsteroidDestroyed, asteroidType);
 	}
 
 }

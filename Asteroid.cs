@@ -25,6 +25,9 @@ public partial class Asteroid : Area2D
 	private AudioStreamPlayer2D _asteroidHitSound;
 
 	private Sprite2D _sprite;
+
+	[Signal]
+	public delegate void AsteroidDestroyedEventHandler(int asteroidType);
 	public override void _Ready()
 	{
 		_sprite = GetNode<Sprite2D>("Sprite2D");
@@ -100,6 +103,7 @@ public partial class Asteroid : Area2D
 
 	public void Split()
 	{
+		EmitSignal(SignalName.AsteroidDestroyed, (int) _asteroidType);
 		var sound = _asteroidHitSound;
 
 		// Move the sound under Game so it survives the asteroid.
