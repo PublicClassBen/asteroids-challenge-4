@@ -37,6 +37,7 @@ public partial class Asteroid : Area2D
 		_screenWrapLarge = GetNode<ScreenWarp>("ScreenWarp_large");
 		_screenWrapMedium = GetNode<ScreenWarp>("ScreenWarp_medium");
 		_screenWrapSmall = GetNode<ScreenWarp>("ScreenWarp_small");
+		BodyEntered += OnBodyEntered;
 		GD.RandRange(0, 1);
 		_rotationDirection = GD.RandRange(0, 1) == 0 ? -1 : 1;
 
@@ -55,6 +56,14 @@ public partial class Asteroid : Area2D
 	{
 		Rotation += RotationSpeed * _rotationDirection * (float)delta;
 		Position += _direction * Speed * (float)delta;
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		if (body is Player player)
+		{
+			player.HandleAsteroidHit();
+		}
 	}
 
 	public void SetAsteroidProperties(AsteroidType type)
@@ -103,7 +112,7 @@ public partial class Asteroid : Area2D
 
 	public void Split()
 	{
-		EmitSignal(SignalName.AsteroidDestroyed, (int) _asteroidType);
+		EmitSignal(SignalName.AsteroidDestroyed, (int)_asteroidType);
 		var sound = _asteroidHitSound;
 
 		// Move the sound under Game so it survives the asteroid.

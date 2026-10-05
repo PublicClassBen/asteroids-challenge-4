@@ -35,9 +35,10 @@ text = "Lives: 3"
 label_settings = SubResource("LabelSettings_qdvs2")
 
 [node name="info" type="Label" parent="." unique_id=1185936303]
-visible = false
-offset_left = 476.0
-offset_top = 340.0
-offset_right = 846.0
-offset_bottom = 363.0
+offset_left = 1.0
+offset_top = 323.0
+offset_right = 1277.0
+offset_bottom = 382.0
 label_settings = SubResource("LabelSettings_3absh")
+horizontal_alignment = 1
+vertical_alignment = 1

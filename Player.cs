@@ -20,6 +20,9 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public PackedScene BulletScene { get; set; }
 
+	[Signal]
+	public delegate void OnPlayerCollisionEventHandler();
+
 	private Marker2D _muzzle;
 
 	private AudioStreamPlayer _shootSound;
@@ -81,6 +84,12 @@ public partial class Player : CharacterBody2D
 		GetParent().AddChild(bullet);
 		bullet.GlobalPosition = _muzzle.GlobalPosition;
 		_shootSound.Play();
+	}
+
+	public void HandleAsteroidHit()
+	{
+		GD.Print("Player hit by an asteroid!");
+		EmitSignal(SignalName.OnPlayerCollision);
 	}
 
 }

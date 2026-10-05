@@ -17,6 +17,8 @@ public partial class AsteroidManager : Node2D
 	[Signal]
 	public delegate void AsteroidDestroyedEventHandler(int asteroidType);
 
+	private bool _clearingAsteroids;
+
 	public override void _Ready()
 	{
 		_asteroid_spawns = new Marker2D[28];
@@ -32,13 +34,12 @@ public partial class AsteroidManager : Node2D
 		}
 		ChildEnteredTree += OnChildEnteredTree;
 		ChildExitingTree += OnChildExitingTree;
-		spawnAsteroids();
 	}
 
 
-	private void spawnAsteroids()
+	private void spawnAsteroids(int currentWave)
 	{
-		int numberOfAsteroids = current_wave + 4;
+		int numberOfAsteroids = currentWave + 4;
 
 		for (int i = 0; i < numberOfAsteroids; i++)
 		{
@@ -50,13 +51,26 @@ public partial class AsteroidManager : Node2D
 		}
 	}
 
+	public void removeAsteroids()
+	{
+		_clearingAsteroids = true;
+		foreach (Node child in GetChildren())
+		{
+			if (child is Asteroid)
+			{
+				child.QueueFree();
+			}
+		}
+		_clearingAsteroids = false;
+	}
+
 	private void OnChildEnteredTree(Node child)
 	{
 		if (child is Asteroid asteroid)
 		{
 			_asteroidsRemaining++;
 			asteroid.AsteroidDestroyed += OnAsteroidDestroyed;
-			
+
 		}
 	}
 
@@ -69,17 +83,16 @@ public partial class AsteroidManager : Node2D
 
 		_asteroidsRemaining--;
 
-		if (_asteroidsRemaining == 0)
+		if (_asteroidsRemaining == 0 && !_clearingAsteroids)
 		{
 			GD.Print($"Wave {current_wave} completed!");
 			EmitSignal(SignalName.WaveCleared);
 		}
 	}
 
-	public void NextWave()
+	public void NextWave(int currentWave)
 	{
-		current_wave++;
-		spawnAsteroids();
+		spawnAsteroids(currentWave);
 	}
 
 	private void OnAsteroidDestroyed(int asteroidType)
